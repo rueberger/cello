@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  cello:
+    image: 'rueberger/cello'
+  ports:
+    '172.30.0.0:9090:8080'
