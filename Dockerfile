@@ -1,15 +1,19 @@
 FROM library/maven:3.6.0-jdk-7
 
-# create user
-RUN addgroup -g 1000 -S app && \
-    adduser -u 1000 -S app -G app && \
-    mkdir -p /home/app && \
-    chown -R app:app /home/app
-
+RUN adduser --disabled-password --gecos "App" app && \
+     mkdir -p /home/app/.ssh && \
+     mkdir -p /home/app/src && \
+     mkdir -p /home/app/work && \
+     chown -R app:app /home/app
 
 USER app
 
-RUN mkdir -p /home/app/work && \
-    mkdir -p /home/app/src
+ADD --chown=app:app  . /home/app/work/cello
 
-ADD --chown=app:app  . /home/app/cello
+# install local jars and compile
+RUN cd /home/app/work/cello/resources/library && \
+    bash install_local_jars_linux.sh && \
+    cd /home/app/work/cello && \
+    mvn clean compile
+
+ENTRYPOINT mvn spring-boot:run
