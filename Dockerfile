@@ -16,4 +16,6 @@ RUN cd /home/app/work/cello/resources/library && \
     cd /home/app/work/cello && \
     mvn clean compile
 
+WORKDIR /home/app/work/cello
+
 ENTRYPOINT mvn spring-boot:run
