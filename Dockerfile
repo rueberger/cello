@@ -1,4 +1,4 @@
-FROM library/maven:3.6.0-jdk-7
+FROM library/maven:3.6.0-jdk-8
 
 RUN adduser --disabled-password --gecos "Cello" cello
 
