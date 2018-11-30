@@ -4,4 +4,4 @@ services:
   cello:
     image: 'rueberger/cello'
     ports:
-      - '172.30.0.0:8181:8080'
+      - '172.30.0.0:8080:8080'
