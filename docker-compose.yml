@@ -5,3 +5,9 @@ services:
     image: 'rueberger/cello'
     ports:
       - '172.30.0.0:8080:8080'
+    volumes:
+      - 'cello:/home/cello/cello_results'
+
+
+volumes:
+  cello:
