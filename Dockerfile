@@ -1,6 +1,6 @@
 FROM library/maven:3.6.0-jdk-7
 
-RUN adduser --disabled-password --gecos "Cello" cello && \
+RUN adduser --disabled-password --gecos "Cello" cello
 
 USER cello
 
