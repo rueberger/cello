@@ -1,21 +1,17 @@
 FROM library/maven:3.6.0-jdk-7
 
-RUN adduser --disabled-password --gecos "App" app && \
-     mkdir -p /home/app/.ssh && \
-     mkdir -p /home/app/src && \
-     mkdir -p /home/app/work && \
-     chown -R app:app /home/app
+RUN adduser --disabled-password --gecos "Cello" cello && \
 
-USER app
+USER cello
 
-ADD --chown=app:app  . /home/app/work/cello
+ADD --chown=cello:cello  . /home/cello/cello
 
 # install local jars and compile
-RUN cd /home/app/work/cello/resources/library && \
+RUN cd /home/cello/cello/resources/library && \
     bash install_local_jars_linux.sh && \
-    cd /home/app/work/cello && \
+    cd /home/cello/cello && \
     mvn clean compile
 
-WORKDIR /home/app/work/cello
+WORKDIR /home/cello/cello
 
 ENTRYPOINT mvn spring-boot:run
